@@ -3,6 +3,8 @@ import 'package:flutter_app/animation/simple_animation_page.dart';
 import 'package:flutter_app/bloc_and_generic/helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'bloc_form/pages/form_validation_page.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
         // home: MainPage(),
         // home: MainPage(),
         // home: CarouselPage(),
-        home: SimpleAnimationPage(),
+        home: FormValidationPage(),
         // home: AppbarPage(),
       ),
     );
