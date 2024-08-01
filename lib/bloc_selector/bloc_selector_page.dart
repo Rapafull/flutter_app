@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BlocSelectorPage extends StatelessWidget {
-  const BlocSelectorPage({Key? key}) : super(key: key);
+  const BlocSelectorPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -75,7 +75,7 @@ class EditFormPage extends StatelessWidget with Validator {
                       TextFormField(
                         initialValue: _formValidatorCubit.state.city,
                         validator: validateCity,
-                        onChanged: _formValidatorCubit.updateAddress,
+                        onChanged: _formValidatorCubit.updateCity,
                         decoration: const InputDecoration(
                           labelText: 'City',
                           hintText: 'Enter your city',

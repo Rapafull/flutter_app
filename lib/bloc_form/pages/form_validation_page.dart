@@ -4,9 +4,15 @@ import 'package:flutter_app/bloc_form/domain/validator.dart';
 import 'package:flutter_app/bloc_form/pages/edit_form_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class FormValidationPage extends StatelessWidget with Validator {
-  FormValidationPage({Key? key}) : super(key: key);
+class FormValidationPage extends StatefulWidget {
+  const FormValidationPage({super.key});
 
+  @override
+  State<FormValidationPage> createState() => _FormValidationPageState();
+}
+
+class _FormValidationPageState extends State<FormValidationPage>
+    with Validator {
   final FormValidatorCubit _formValidatorCubit = FormValidatorCubit();
 
   final _formKey = GlobalKey<FormState>();
@@ -21,7 +27,8 @@ class FormValidationPage extends StatelessWidget with Validator {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            BlocSelector<FormValidatorCubit, FormValidatorState, AutovalidateMode>(
+            BlocSelector<FormValidatorCubit, FormValidatorState,
+                AutovalidateMode>(
               bloc: _formValidatorCubit,
               selector: (state) => state.autovalidateMode,
               builder: (context, AutovalidateMode autovalidateMode) {
@@ -53,7 +60,8 @@ class FormValidationPage extends StatelessWidget with Validator {
                         ),
                       ),
                       const SizedBox(height: 8.0),
-                      BlocSelector<FormValidatorCubit, FormValidatorState, bool>(
+                      BlocSelector<FormValidatorCubit, FormValidatorState,
+                          bool>(
                         bloc: _formValidatorCubit,
                         selector: (state) => state.obscureText,
                         builder: (context, obscureText) {
@@ -68,7 +76,10 @@ class FormValidationPage extends StatelessWidget with Validator {
                                   labelText: 'Password',
                                   hintText: 'Enter your password',
                                   prefixIcon: const Icon(Icons.lock),
-                                  suffixIcon: IconButton(onPressed: _formValidatorCubit.toggleObscureText, icon: const Icon(Icons.remove_red_eye)),
+                                  suffixIcon: IconButton(
+                                      onPressed:
+                                          _formValidatorCubit.toggleObscureText,
+                                      icon: const Icon(Icons.remove_red_eye)),
                                   border: const OutlineInputBorder(),
                                 ),
                               ),
@@ -80,7 +91,8 @@ class FormValidationPage extends StatelessWidget with Validator {
                                 ),
                                 obscureText: obscureText,
                                 keyboardType: TextInputType.visiblePassword,
-                                onChanged: _formValidatorCubit.updateConfirmPassword,
+                                onChanged:
+                                    _formValidatorCubit.updateConfirmPassword,
                                 decoration: const InputDecoration(
                                   labelText: 'Confirm password',
                                   hintText: 'Enter your confirm password',
@@ -106,7 +118,7 @@ class FormValidationPage extends StatelessWidget with Validator {
                       const SizedBox(height: 8.0),
                       TextFormField(
                         validator: validateCity,
-                        onChanged: _formValidatorCubit.updateAddress,
+                        onChanged: _formValidatorCubit.updateCity,
                         decoration: const InputDecoration(
                           labelText: 'City',
                           hintText: 'Enter your city',
@@ -128,16 +140,19 @@ class FormValidationPage extends StatelessWidget with Validator {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     // Do your job here for
+                    _formValidatorCubit.printData();
                   } else {
                     //
-                    _formValidatorCubit.updateAutovalidateMode(AutovalidateMode.always);
+                    _formValidatorCubit
+                        .updateAutovalidateMode(AutovalidateMode.always);
                   }
                 },
                 child: const Text('Submit'),
               ),
             ),
             const SizedBox(height: 16.0),
-            const Text('It\'s just an example and dummy data to show you how we can use bloc to handle update case'),
+            const Text(
+                'It\'s just an example and dummy data to show you how we can use bloc to handle update case'),
             const SizedBox(height: 8.0),
             SizedBox(
               width: double.infinity,

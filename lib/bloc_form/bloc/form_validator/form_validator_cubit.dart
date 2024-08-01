@@ -1,10 +1,11 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'form_validator_state.dart';
 
 class FormValidatorCubit extends Cubit<FormValidatorState> {
-  FormValidatorCubit() : super(const FormValidatorUpdate());
+  FormValidatorCubit() : super(const FormValidatorState());
 
   void initForm({
     String email = '',
@@ -53,6 +54,15 @@ class FormValidatorCubit extends Cubit<FormValidatorState> {
   }
 
   void reset() {
-    emit(const FormValidatorUpdate());
+    // emit(const FormValidatorUpdate());
+  }
+
+  void printData() {
+    print(state.email);
+    print(state.password);
+    print(state.confirmPassword);
+    print(state.name);
+    print(state.address);
+    print(state.city);
   }
 }
